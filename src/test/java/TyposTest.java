@@ -12,18 +12,15 @@ public class TyposTest {
     Задача 5. Typos -
     Проверить соответствие параграфа орфографии Локатор: (By.xpath("(//p)[2]"))
      */
-    public  void typos() {
+    public  void checkTypos() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--disable-notification");
-
         WebDriver driver = new ChromeDriver(options);
         SoftAssert softAssert = new SoftAssert();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
         driver.get("https://the-internet.herokuapp.com/typos");
-
         int refresh = 10;
         for (int i = 1; i <= refresh; i++) {
             driver.navigate().refresh();
