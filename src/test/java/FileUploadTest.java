@@ -4,11 +4,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
 import java.time.Duration;
+
+import static org.testng.Assert.*;
 
 public class FileUploadTest {
     /*
@@ -33,7 +34,7 @@ public class FileUploadTest {
         //проверяем корректность наименования загруженного файла
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(), 'File Uploaded!')]")));
         String fileName = driver.findElement(By.id("uploaded-files")).getText();
-        Assert.assertEquals(fileName, "FileForTestFileUpload.txt");
+        assertEquals(fileName, "FileForTestFileUpload.txt");
         driver.quit();
     }
 }

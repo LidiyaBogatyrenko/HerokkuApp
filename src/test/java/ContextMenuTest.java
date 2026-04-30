@@ -4,8 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import javax.swing.*;
 import java.time.Duration;
@@ -25,16 +25,14 @@ public class ContextMenuTest {
         options.addArguments("--disable-notification");
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        SoftAssert softAssert = new SoftAssert();
         driver.get("https://the-internet.herokuapp.com/context_menu");
         Actions actions = new Actions(driver);
         actions.contextClick(driver.findElement(By.id("hot-spot")))
                 .build().perform();
         Alert alert= driver.switchTo().alert();
         String alertText = alert.getText();
-        softAssert.assertEquals(alertText, "You selected a context menu");
+        Assert.assertEquals(alertText, "You selected a context menu");
         alert.accept();
         driver.quit();
-        softAssert.assertAll();
     }
 }
